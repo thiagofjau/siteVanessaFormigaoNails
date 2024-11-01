@@ -6,7 +6,9 @@
     --banner-background-color: #e0f7fa;
     --border-color: #ccc;
 }
-
+html {
+    scroll-behavior: smooth;
+}
 /* Reset some default styles */
 body,
 h1,
@@ -408,28 +410,115 @@ footer {
     color: #fff;
     font-size: 12px;
 }
+/*Whatsapp button*/
+.whatsapp-button {
+    position: fixed;
+    width: 60px;
+    height: 60px;
+    bottom: 40px;
+    right: 40px;
+    background-color: rgba(37, 211, 10);
+    color: #FFF;
+    border-radius: 50px;
+    text-align: center;
+    font-size: 30px;
+    box-shadow: 1px 1px 2px #888;
+    z-index: 1000;
+    transition: transform 0.3s ease;
+}
 
-/* Responsive styles */
-@media (max-width: 768px) {
-    nav ul {
-        flex-direction: column;
-        display: none;
+.whatsapp-button::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    border-radius: 50%;
+    background-color: rgba(37, 211, 10, .9);
+    z-index: -1;
+    animation: pulse 1.2s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(0.9);
+        opacity: 1;
     }
-
-    nav ul.active {
-        display: flex;
+    70% {
+        transform: scale(1.5);
+        opacity: 0;
     }
-
-    .menu-toggle {
-        display: block;
-        cursor: pointer;
-        text-align: center;
-        padding: 1rem;
-        background-color: var(--primary-color);
-        color: #fff;
+    100% {
+        transform: scale(1.9);
+        opacity: 0;
     }
 }
 
-.menu-toggle {
-    display: none;
+/* Responsive styles */
+@media screen and (max-width: 1024px) {
+    .price-table .container-price {
+        grid-template-columns: repeat(2, 1fr);
+        margin-left: 50px;
+        margin-right: 50px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    nav ul {
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    .banner {
+        height: 300px;
+    }
+
+    .price-table .container-price {
+        grid-template-columns: 1fr;
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+
+    form {
+        width: 90%;
+    }
+
+    .prev, .next {
+        margin-left: 20px;
+        margin-right: 20px;
+        font-size: 30px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .container {
+        width: 95%;
+    }
+
+    .banner {
+        height: 250px;
+    }
+
+    .texto-banner h1 {
+        font-size: 1.5rem;
+    }
+
+    .price-table .card {
+        width: 100%;
+    }
+
+    form input,
+    form textarea {
+        flex: 1 1 100%;
+    }
+
+    .whatsapp-button {
+        width: 50px;
+        height: 50px;
+        bottom: 20px;
+        right: 20px;
+        font-size: 25px;
+    }
 }
