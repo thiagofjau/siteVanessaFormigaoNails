@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vanessa Formigão Unhas</title>
+    <link rel="stylesheet" href="./style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+    <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <img src="./assets/img/logovanessa.PNG" alt="Logo Vanessa Formigão Unhas">
+            </div>
+            <style>
+                .logo {
+                    text-align: center;
+
+                }
+
+                .logo img {
+                    height: 150px;
+                }
+            </style>
+            <nav>
+                <ul>
+                    <li><a href="./index.html">Início</a></li>
+                    <li><a href="./index.html#servicos">Serviços</a></li>
+                    <li><a href="./blog.html">Blog</a></li>
+                    <li><a href="./sobre.html">Sobre</a></li>
+                    <li><a href="./index.html#avaliacoes">Avaliações</a></li>
+                    <li><a href="./index.html#contato">Contato</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="price-table">
+        <div class="container">
+            <div class="card">
+                <div class="card-image" style="background-image: url('./assets/img/manicure.jpg');"></div>
+                <h3>Manicure</h3>
+                <p><i class='bx bx-check' style='color:green'></i> Cuidados completos para suas unhas.</p>
+                <span class="price">R$ 50,00</span>
+                <button class="btn">EU QUERO!</button>
+            </div>
+            <div class="card">
+                <div class="card-image" style="background-image: url('./assets/img/pedicure.jpg');"></div>
+                <h3>Pedicure</h3>
+                <p><i class='bx bx-check' style='color:green'></i> Tratamento especial para seus pés.</p>
+                <span class="price">R$ 60,00</span>
+                <button class="btn">EU QUERO!</button>
+            </div>
+            <div class="card">
+                <div class="card-image" style="background-image: url('./assets/img//pe\ e\ mão.jpg');"></div>
+                <h3>Pé e Mão</h3>
+                <p><i class='bx bx-check' style='color:green'></i> Unhas perfeitas e duradouras.</p>
+                <span class="price">R$ 120,00</span>
+                <button class="btn">EU QUERO!</button>
+            </div>
+            <div class="card">
+                <div class="card-image" style="background-image: url('./assets/img/reiki.jpg');"></div>
+                <h3>Reiki</h3>
+                <p><i class='bx bx-check' style='color:green'></i> A Energia do universo que te cura.</p>
+                <span class="price">R$ 150,00</span>
+                <button class="btn">EU QUERO!</button>
+            </div>
+            <div class="card">
+                <div class="card-image" style="background-image: url('./assets/img/cromoterapia.webp');"></div>
+                <h3>Cromoterapia</h3>
+                <p><i class='bx bx-check' style='color:green'></i> A cura através das cores.</p>
+                <span class="price">R$ 150,00</span>
+                <button class="btn">EU QUERO!</button>
+            </div>
+            <div class="card">
+                <div class="card-image" style="background-image: url('./assets/img/pacote\ completo.jpg');"></div>
+                <h3>All-in-one</h3>
+                <p><i class='bx bx-check' style='color:green'></i> Pacote Felicidade Total!.</p>
+                <span class="price">R$ 150,00</span>
+                <button class="btn">EU QUERO!</button>
+            </div>
+        </div>
+    </section>
+
+    <style>
+        .card-image {
+            height: 150px;
+            background-size: cover;
+            background-position: center;
+            border-radius: 10px 10px 0 0;
+            margin-bottom: 15px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            margin-top: 10px;
+            background-color: #ff69b4;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-transform: uppercase;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #ff1493;
+        }
+    </style>
+
+    <style>
+        .price-table {
+            padding: 50px 0;
+            background-color: #f9f9f9;
+        }
+
+        .price-table .container {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+
+        .price-table .card {
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            width: 250px;
+            margin: 10px;
+        }
+
+        .price-table .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .price-table .card h3 {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+
+        .price-table .card p {
+            font-size: 1em;
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .price-table .card .price {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #333;
+        }
+    </style>
+
+</body>
+
+</html>
