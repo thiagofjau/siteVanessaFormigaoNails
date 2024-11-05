@@ -82,12 +82,12 @@ const updateReviews = (index, direction = 'left') => {
     reviews[index].style.display = 'block';
     reviews[index].classList.add(direction === 'left' ? 'slide-in-left' : 'slide-in-right');
     
-    //opacidade ao alternar entre os slides. ok (mas testar slide vindo)
-    reviews[index].style.opacity = '0';
-    setTimeout(() => {
-        reviews[index].style.transition = 'opacity 0.5s ease-in-out';
-        reviews[index].style.opacity = '1';
-    }, 100);
+    //opacidade ao alternar entre os slides
+    // reviews[index].style.opacity = '0';
+    // setTimeout(() => {
+    //     reviews[index].style.transition = 'opacity 0.5s ease-in-out';
+    //     reviews[index].style.opacity = '1';
+    // }, 10);
 
 
     
