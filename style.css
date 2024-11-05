@@ -400,7 +400,7 @@ form button:hover {
 }
 
 .redes-sociais a:hover {
-    color: var(--secondary-color);
+    opacity: .4;
 }
 
 footer {
