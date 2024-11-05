@@ -1,8 +1,8 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     // Smooth scroll for menu links
     const menuLinks = document.querySelectorAll('nav a[href^="#"]');
     menuLinks.forEach(link => {
-        link.addEventListener('click', function(e) {
+        link.addEventListener('click', function (e) {
             e.preventDefault();
             const targetId = this.getAttribute('href').substring(1);
             const targetElement = document.getElementById(targetId);
@@ -38,27 +38,28 @@ document.addEventListener('DOMContentLoaded', function() {
         handleScrollAnimation();
     });
 
-    // Mobile menu toggle
-    const mobileMenuButton = document.querySelector('.mobile-menu-button');
-    const mobileMenu = document.querySelector('.mobile-menu');
+    // // Mobile menu toggle
+    // const mobileMenuButton = document.querySelector('.mobile-menu-button');
+    // const mobileMenu = document.querySelector('.mobile-menu');
 
-    mobileMenuButton.addEventListener('click', () => {
-        mobileMenu.classList.toggle('open');
-    });
+    // mobileMenuButton.addEventListener('click', () => {
+    //     mobileMenu.classList.toggle('open');
+    // });
 });
+
 
 //pegar dados form e mandar whatsapp
 const form = document.querySelector('form');
-form.addEventListener('submit', function(e) {
+form.addEventListener('submit', function (e) {
     e.preventDefault();
-    
+
     const nome = document.getElementById('nome').value;
     const number = document.getElementById('number').value;
     const mensagem = document.getElementById('mensagem').value;
-    
+
     const whatsappMessage = `Nome: ${nome}\nCelular: ${number}\nMensagem: ${mensagem}`;
     const whatsappUrl = `https://api.whatsapp.com/send?phone=+5514997746343&text=${encodeURIComponent(whatsappMessage)}`;
-    
+
     window.open(whatsappUrl, '_blank');
 });
 
@@ -81,23 +82,23 @@ const updateReviews = (index, direction = 'left') => {
 
     reviews[index].style.display = 'block';
     reviews[index].classList.add(direction === 'left' ? 'slide-in-left' : 'slide-in-right');
-    
-    //opacidade ao alternar entre os slides
-    // reviews[index].style.opacity = '0';
-    // setTimeout(() => {
-    //     reviews[index].style.transition = 'opacity 0.5s ease-in-out';
-    //     reviews[index].style.opacity = '1';
-    // }, 10);
+
+    //opacidade ao alternar entre os slides. ok (mas testar slide vindo)
+    reviews[index].style.opacity = '0';
+    setTimeout(() => {
+        reviews[index].style.transition = 'opacity 0.5s ease-in-out';
+        reviews[index].style.opacity = '1';
+    }, 100);
 
 
-    
+
 };
 
 const startAutoSlide = () => {
     autoSlideInterval = setInterval(() => {
         currentIndex = (currentIndex < reviews.length - 1) ? currentIndex + 1 : 0;
         updateReviews(currentIndex, 'left');
-    }, 3000); // Change slide every 3 seconds
+    }, 1000); // Change slide every 3 seconds
 };
 
 const stopAutoSlide = () => {
@@ -173,8 +174,23 @@ scrollToTopButton.addEventListener('click', () => {
     });
 });
 
+//menu mobile toggle funcionando
+const menuIcon = document.querySelector('.menu-icon');
+const navLinks = document.querySelector('.nav-links');
 
+menuIcon.addEventListener('click', () => {
+    navLinks.classList.toggle('active');
+    menuIcon.querySelector('i').classList.toggle('fa-times');
+menuIcon.querySelector('i').classList.toggle('fa-bars');
+//estudar uma transição   
+}); 
 
+document.addEventListener('click', (e) => {
+    if (!navLinks.contains(e.target) && !menuIcon.contains(e.target)) {
+        navLinks.classList.remove('active');
+        menuIcon.querySelector('i').classList.remove('fa-times');
+    }
+});
 
 
 

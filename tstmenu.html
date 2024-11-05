@@ -1,4 +1,31 @@
-:root {
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manicure | Pedicure | Spa dos pés | Reiki | Cromoterapia em Jaú</title>
+    <link rel="icon" type="image/x-icon"
+        href="./assets/img/favicon manicure pedicure spa dos pes reiki cromoterapia jau sp.png">
+    <meta name="description"
+        content="Serviços profissionais de manicure, pedicure, nail designer, spa dos pés, reiki e cromoterapia em Jaú e região. Atendimento presencial e a distância.">
+    <meta name="keywords"
+        content="manicure, pedicure, nail designer, spa dos pés, reiki, cromoterapia, Jaú, atendimento a distância, unhas, tratamento dos pés, terapias alternativas">
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="Vanessa Formigão">
+    <meta property="og:title" content="Manicure, Pedicure e Terapias em Jaú - Vanessa Formigão">
+    <meta property="og:description"
+        content="Serviços de manicure, pedicure, nail design, spa dos pés e terapias alternativas em Jaú. Atendimento presencial e a distância.">
+    <link rel="stylesheet" href="./style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+<style>
+    :root {
     --primary-color: #709B93;
     --secondary-color: #EFF4F3;
     --background-color: #ffffff;
@@ -58,7 +85,6 @@ header {
     padding: .8rem 0;
 }
 
-/*menu mobile default none*/
 .menu-icon {
     display: none;
     cursor: pointer;
@@ -69,11 +95,33 @@ nav ul {
     display: flex;
     justify-content: center;
     list-style: none;
-
 }
 
 nav ul li {
     margin: 0 1rem;
+}
+
+@media screen and (max-width: 768px) {
+    .menu-icon {
+        display: block;
+        text-align: right;
+        padding: 10px;
+        text-align: left;
+    }
+
+    .nav-links {
+        display: none;
+    }
+
+    .nav-links.active {
+        display: block;
+    }
+
+    nav ul {
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+    }
 }
 
 nav ul li a {
@@ -86,7 +134,6 @@ nav ul li a {
 nav ul li a:hover {
     color: var(--secondary-color);
 }
-
 
 .banner {
     text-align: center;
@@ -495,22 +542,6 @@ footer {
 }
 
 @media screen and (max-width: 768px) {
-    /*exibir menu icon*/
-    .menu-icon {
-        display: block;
-        text-align: right;
-        padding: 10px;
-        text-align: left;
-    }
-    /*ocultar menu padrão*/
-    .nav-links {
-        display: none;
-    }
-    /*exibir menu icon*/
-    .nav-links.active {
-        display: block;
-    }
-    /*menus em colum no mobile*/
     nav ul {
         flex-direction: column;
         align-items: center;
@@ -518,9 +549,11 @@ footer {
     }
 
     .banner {
-        height: 150px;
-        background-attachment: scroll;
-        opacity: 1;
+        height: 300px;
+    }
+    .logo img {
+        height: 120px;
+        width: auto;
     }
 
     .price-table .container-price {
@@ -571,3 +604,60 @@ footer {
         font-size: 25px;
     }
 }
+</style>
+</head>
+
+<body>
+
+    <!-- begin header -->
+    <header>
+        <div class="container">
+            <div class="logo">
+                <a href="index.html"><img src="./assets/img/logo manicure pedicure reiki cromoterapia jau.PNG"
+                        alt="logo da manicure pedicure reiki cromoterapia jau"></a>
+            </div>
+
+            <nav>
+                <div class="menu-icon">
+                    <i class="fa fa-bars"></i>
+                </div>
+                <div class="nav-links">
+                    <ul>
+                        <li><a href="./index.html">Início</a></li>
+                        <li><a href="./index.html#servicos">Serviços</a></li>
+                        <li><a href="./blog.html">Blog</a></li>
+                        <li><a href="./sobre.html">Sobre</a></li>
+                        <li><a href="./index.html#avaliacoes">Avaliações</a></li>
+                        <li><a href="./index.html#contato">Contato</a></li>
+                    </ul>
+                </div>
+            </nav>
+
+        </div>
+    </header>
+  
+
+
+
+
+
+<script>
+    const menuIcon = document.querySelector('.menu-icon');
+    const navLinks = document.querySelector('.nav-links');
+
+    menuIcon.addEventListener('click', () => {
+        navLinks.classList.toggle('active');
+        menuIcon.querySelector('i').classList.toggle('fa-times');
+    menuIcon.querySelector('i').classList.toggle('fa-bars');
+    //estudar uma transição   
+    }); 
+
+    document.addEventListener('click', (e) => {
+        if (!navLinks.contains(e.target) && !menuIcon.contains(e.target)) {
+            navLinks.classList.remove('active');
+            menuIcon.querySelector('i').classList.remove('fa-times');
+        }
+    });
+</script>
+
+
