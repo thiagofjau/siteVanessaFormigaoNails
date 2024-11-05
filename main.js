@@ -57,7 +57,7 @@ form.addEventListener('submit', function(e) {
     const mensagem = document.getElementById('mensagem').value;
     
     const whatsappMessage = `Nome: ${nome}\nCelular: ${number}\nMensagem: ${mensagem}`;
-    const whatsappUrl = `https://api.whatsapp.com/send?phone=+5514996959357&text=${encodeURIComponent(whatsappMessage)}`;
+    const whatsappUrl = `https://api.whatsapp.com/send?phone=+5514997746343&text=${encodeURIComponent(whatsappMessage)}`;
     
     window.open(whatsappUrl, '_blank');
 });
