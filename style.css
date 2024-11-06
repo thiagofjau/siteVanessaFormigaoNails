@@ -50,6 +50,7 @@ body {
     width: 90%;
     max-width: 1200px;
     margin: 0 auto;
+    overflow-x: hidden; /* Prevent horizontal scrolling */
 }
 
 header {
@@ -206,6 +207,7 @@ nav ul li a:hover {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    margin-bottom: 25px;
 }
 
 .btn:hover {
@@ -217,19 +219,19 @@ nav ul li a:hover {
 
 .price-table {
     padding: 50px 0;
-    /* background-color: #f9f9f9; */
+    width: 100%;
+    overflow: hidden;
 }
 
 .price-table .container-price {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
+    grid-template-columns: repeat(3, minmax(250px, 1fr));
+    gap: 10px;
     align-items: center;
-    /* Centraliza verticalmente */
-    justify-items: center;
-    /* Centraliza horizontalmente */
-    margin-left: 200px;
-    margin-right: 200px;
+    justify-content: space-evenly;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
 }
 
 .price-table .card {
@@ -241,8 +243,12 @@ nav ul li a:hover {
     padding: 20px;
     text-align: center;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    width: 250px;
-    margin: 10px;
+    width: 250px; /* fixed width */
+    margin-bottom: 25px;
+    margin: 0 auto; /* centers the card in its grid cell */
+}
+.price-table .card{
+    margin-bottom: 25px;
 }
 
 .price-table .card h3 {
@@ -262,13 +268,49 @@ nav ul li a:hover {
     font-weight: bold;
     color: #333;
 }
-
 /* fim Serviços */
+
+/*sobre*/
+.sobre-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    padding: 2rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: var(--background-color);
+}
+
+.foto-profissional {
+    border-radius: 50%;
+    width: 180px;
+    height: 180px;
+    object-fit: cover;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.texto-sobre {
+    max-width: 600px;
+}
+
+.texto-sobre h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: var(--primary-color);
+}
+
+.texto-sobre p {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--text-color);
+    border-left: 3px solid var(--primary-color);
+    padding-left: 1.7rem;
+}
 
 .avaliacoes-container {
     display: flex;
     flex-direction: column;
-    overflow: hidden;
+    /* overflow: hidden; */
     position: relative;
     background-color: var(--background-color);
     margin-bottom: 10px;
@@ -301,6 +343,12 @@ nav ul li a:hover {
     color: #ffb400;
     font-size: 1.9rem;
     margin: 0.3rem 0;
+}
+.texto-avaliacao {
+    width: 75%;
+    margin: 0 auto;
+    /* max-height: 200px; */
+    padding: 20px;
 }
 
 .prev,
@@ -436,6 +484,7 @@ footer {
     background: linear-gradient(to bottom, rgb(112, 155, 147), rgb(123, 184, 173));
     color: #fff;
     font-size: 12px;
+    margin-top: 48px;
 }
 
 /*Whatsapp button*/
@@ -489,12 +538,27 @@ footer {
 @media screen and (max-width: 1024px) {
     .price-table .container-price {
         grid-template-columns: repeat(2, 1fr);
-        margin-left: 50px;
-        margin-right: 50px;
+        max-width: 800px;
+    }
+    .menu-icon{
+        margin-top: -25px;
+        padding: 0 0 5px 10px;
+    }
+    .logo img {
+        margin-top: 15px;
+        height: 120px;
+        width: auto;
+    }
+    header{
+        padding: 0;
     }
 }
 
 @media screen and (max-width: 768px) {
+
+    body{
+        /* overflow-x: hidden; */
+    }
     /*exibir menu icon*/
     .menu-icon {
         display: block;
@@ -502,19 +566,65 @@ footer {
         padding: 10px;
         text-align: left;
     }
+
     /*ocultar menu padrão*/
     .nav-links {
         display: none;
     }
+
     /*exibir menu icon*/
     .nav-links.active {
         display: block;
     }
+
     /*menus em colum no mobile*/
     nav ul {
         flex-direction: column;
         align-items: center;
         gap: 1rem;
+    }
+
+    .sobre-container {
+        flex-direction: column;
+        align-items: center;
+        padding: 1rem;
+        gap: 5px;
+        /* overflow-x: hidden; */
+    }
+    .texto-sobre p {
+        border-left: none;
+    }
+
+    .foto-profissional {
+        width: 100px;
+        height: 100px;
+        margin-bottom: 1rem;
+        height: 200px;
+        width: 200px;
+    }
+
+
+    .texto-sobre {
+        max-width: 100%;
+        text-align: justify;
+        padding: 5px;
+    }
+
+    .texto-sobre h2 {
+        font-size: 1.5rem;
+    }
+
+    .texto-sobre::before {
+        content: '';
+        display: block;
+        width: 50%;
+        height: 1px;
+        background-color: var(--primary-color);
+        margin: 1rem auto;
+    }
+
+    .texto-sobre {
+        font-size: 0.9rem;
     }
 
     .banner {
@@ -525,8 +635,8 @@ footer {
 
     .price-table .container-price {
         grid-template-columns: 1fr;
-        margin-left: 20px;
-        margin-right: 20px;
+        max-width: 400px;
+        padding: 0 10px;
     }
 
     form {

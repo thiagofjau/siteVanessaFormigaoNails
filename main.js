@@ -37,18 +37,10 @@ document.addEventListener('DOMContentLoaded', function () {
     window.addEventListener('scroll', () => {
         handleScrollAnimation();
     });
-
-    // // Mobile menu toggle
-    // const mobileMenuButton = document.querySelector('.mobile-menu-button');
-    // const mobileMenu = document.querySelector('.mobile-menu');
-
-    // mobileMenuButton.addEventListener('click', () => {
-    //     mobileMenu.classList.toggle('open');
-    // });
 });
 
 
-//pegar dados form e mandar whatsapp
+// pegar dados form e mandar whatsapp
 const form = document.querySelector('form');
 form.addEventListener('submit', function (e) {
     e.preventDefault();
@@ -88,7 +80,7 @@ const updateReviews = (index, direction = 'left') => {
     setTimeout(() => {
         reviews[index].style.transition = 'opacity 0.5s ease-in-out';
         reviews[index].style.opacity = '1';
-    }, 100);
+    }, 400);
 
 
 
@@ -98,7 +90,7 @@ const startAutoSlide = () => {
     autoSlideInterval = setInterval(() => {
         currentIndex = (currentIndex < reviews.length - 1) ? currentIndex + 1 : 0;
         updateReviews(currentIndex, 'left');
-    }, 1000); // Change slide every 3 seconds
+    }, 4000); // Change slide every 3 seconds
 };
 
 const stopAutoSlide = () => {
@@ -191,24 +183,3 @@ document.addEventListener('click', (e) => {
         menuIcon.querySelector('i').classList.remove('fa-times');
     }
 });
-
-
-
-//funcao para que ao rolar a tela para baixo, apareça o menu fixo, ao parar de rolar, ele suma
-//não funfou
-// let lastScrollTop = 0;
-// const fixedMenu = document.querySelector('.fixed-menu');
-// if (fixedMenu) {
-//     window.addEventListener('scroll', () => {
-//         const scrollTop = window.scrollY || document.documentElement.scrollTop;
-//         if (scrollTop > lastScrollTop) {
-//             // Scrolling down
-//             fixedMenu.style.top = '0';
-//         } else {
-//             // Scrolling up
-//             fixedMenu.style.top = '-100px'; // Adjust this value based on your menu height
-//         }
-//         lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; // For Mobile or negative scrolling
-//     });
-// }
-
