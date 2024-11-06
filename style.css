@@ -43,14 +43,15 @@ body {
 }
 
 .logo img {
-    height: 150px;
+    height: 124px;
 }
 
 .container {
     width: 90%;
     max-width: 1200px;
     margin: 0 auto;
-    overflow-x: hidden; /* Prevent horizontal scrolling */
+    overflow-x: hidden;
+    /* Prevent horizontal scrolling */
 }
 
 header {
@@ -126,6 +127,48 @@ nav ul li a:hover {
     align-items: center;
     text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
 }
+
+/*seta pulsante para baixo*/
+.icon-container {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.fa-angle-down:before {
+    content: "\f107";
+}
+
+.fa {
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    display: inline-block;
+    font-style: normal;
+    font-variant: normal;
+    text-rendering: auto;
+    line-height: 1;
+    color: #fff;
+}
+
+.fa-2x {
+    font-size: 2em;
+}
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(8px);
+    }
+}
+
+.fa-angle-down {
+    animation: bounce 1.8s ease-in-out infinite;
+}
+/*seta pulsante para baixo*/
 
 /*botão scroll to top*/
 .scroll-to-top {
@@ -243,11 +286,14 @@ nav ul li a:hover {
     padding: 20px;
     text-align: center;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    width: 250px; /* fixed width */
+    width: 250px;
+    /* fixed width */
     margin-bottom: 25px;
-    margin: 0 auto; /* centers the card in its grid cell */
+    margin: 0 auto;
+    /* centers the card in its grid cell */
 }
-.price-table .card{
+
+.price-table .card {
     margin-bottom: 25px;
 }
 
@@ -268,6 +314,7 @@ nav ul li a:hover {
     font-weight: bold;
     color: #333;
 }
+
 /* fim Serviços */
 
 /*sobre*/
@@ -344,6 +391,7 @@ nav ul li a:hover {
     font-size: 1.9rem;
     margin: 0.3rem 0;
 }
+
 .texto-avaliacao {
     width: 75%;
     margin: 0 auto;
@@ -540,25 +588,24 @@ footer {
         grid-template-columns: repeat(2, 1fr);
         max-width: 800px;
     }
-    .menu-icon{
+
+    .menu-icon {
         margin-top: -25px;
         padding: 0 0 5px 10px;
     }
+
     .logo img {
         margin-top: 15px;
         height: 120px;
         width: auto;
     }
-    header{
+
+    header {
         padding: 0;
     }
 }
 
 @media screen and (max-width: 768px) {
-
-    body{
-        /* overflow-x: hidden; */
-    }
     /*exibir menu icon*/
     .menu-icon {
         display: block;
@@ -591,6 +638,7 @@ footer {
         gap: 5px;
         /* overflow-x: hidden; */
     }
+
     .texto-sobre p {
         border-left: none;
     }
