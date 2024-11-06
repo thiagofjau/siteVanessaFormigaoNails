@@ -46,10 +46,10 @@ form.addEventListener('submit', function (e) {
     e.preventDefault();
 
     const nome = document.getElementById('nome').value;
-    const number = document.getElementById('number').value;
+    const celular = document.getElementById('celular').value;
     const mensagem = document.getElementById('mensagem').value;
 
-    const whatsappMessage = `Nome: ${nome}\nCelular: ${number}\nMensagem: ${mensagem}`;
+    const whatsappMessage = `Nome: ${nome}\nCelular: ${celular}\nMensagem: ${mensagem}`;
     const whatsappUrl = `https://api.whatsapp.com/send?phone=+5514997746343&text=${encodeURIComponent(whatsappMessage)}`;
 
     window.open(whatsappUrl, '_blank');
