@@ -173,9 +173,20 @@ const navLinks = document.querySelector('.nav-links');
 menuIcon.addEventListener('click', () => {
     navLinks.classList.toggle('active');
     menuIcon.querySelector('i').classList.toggle('fa-times');
-menuIcon.querySelector('i').classList.toggle('fa-bars');
-//estudar uma transição   
-}); 
+    menuIcon.querySelector('i').classList.toggle('fa-bars');
+    //estudar uma transição   
+});
+// Add transition for menu icon
+const menuIconTransition = document.createElement('style');
+menuIconTransition.innerHTML = `
+    .menu-icon i {
+        transition: transform 0.3s ease-in-out;
+    }
+    .menu-icon i.fa-times {
+        transform: rotate(90deg);
+    }
+`;
+document.head.appendChild(menuIconTransition);
 
 document.addEventListener('click', (e) => {
     if (!navLinks.contains(e.target) && !menuIcon.contains(e.target)) {
