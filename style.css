@@ -357,12 +357,32 @@ nav ul li a:hover {
 .avaliacoes-container {
     display: flex;
     flex-direction: column;
-    /* overflow: hidden; */
+    overflow: hidden;
     position: relative;
     background-color: var(--background-color);
-    margin-bottom: 10px;
-    box-shadow: 0 1px 20px rgba(0, 0, 0, 0.1), 0 1px 20px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0px 8px rgba(0, 0, 0, 0.1);
+}
 
+.avaliacoes-container.grabbing {
+    cursor: grabbing;
+    cursor: -webkit-grabbing;
+}
+
+.avaliacoes-wrapper {
+    display: flex;
+    flex-direction: row;
+    transition: transform 0.3s ease-out;
+    width: 100%;
+}
+
+.avaliacao {
+    min-width: 80%; /* Adjusted for partial visibility */
+    margin: 0 10px; /* Spacing between testimonials */
+    transition: transform 0.3s ease-out;
+}
+
+.avaliacao h3 {
+    width: 100%;
 }
 
 .avaliacao {
@@ -371,6 +391,12 @@ nav ul li a:hover {
     padding: 1rem;
     text-align: center;
     transition: transform 0.5s ease;
+    min-width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transform: translateX(0);
+    transition: transform 0.3s ease-out;
 }
 
 .avaliacao h3 {
@@ -430,32 +456,72 @@ nav ul li a:hover {
 .bullets {
     display: flex;
     justify-content: center;
-    margin-top: 1rem;
-    margin-bottom: 1rem;
+    gap: 0.5rem;
+    margin: 1rem 0;
+    position: relative;
+    z-index: 2;
 }
 
 .bullet {
-    width: 10px;
-    height: 10px;
-    background-color: var(--border-color);
+    width: 12px;
+    height: 12px;
+    background-color: #ccc;
     border-radius: 50%;
-    margin: 0 0.5rem;
     cursor: pointer;
-    transition: background-color 0.3s;
+    transition: background-color 0.3s ease;
+    border: none;
+    padding: 0;
+    margin: 0 4px;
+    display: inline-block;
 }
 
-.bullet.active,
-.bullet:hover {
+.bullet.active {
     background-color: var(--primary-color);
 }
 
+.bullet:hover {
+    background-color: var(--primary-color);
+    opacity: 0.8;
+}
+
+/* Slide-in animations for testimonials */
+@keyframes slide-in-left {
+    from {
+        transform: translateX(-100%);
+        /* opacity: 0; */
+    }
+    to {
+        transform: translateX(0);
+        /* opacity: 1; */
+    }
+}
+
+@keyframes slide-in-right {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        /* opacity: 1; */
+    }
+}
+
+.slide-in-left {
+    animation: slide-in-left 0.5s forwards;
+}
+
+.slide-in-right {
+    animation: slide-in-right 0.5s forwards;
+}
 
 form {
     display: flex;
     flex-wrap: wrap;
     /* gap: .1rem; */
     padding: 1rem;
-    border: 1px solid var(--primary-color);
+    /* border: 1px solid var(--primary-color); */
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
     background-color: var(--background-color);
     width: 50%;
@@ -476,6 +542,7 @@ form textarea {
     border-radius: 5px;
     transition: border-color 0.3s;
     margin-bottom: 10px;
+    font-family: Poppins, Arial, Helvetica, sans-serif;
 }
 
 form textarea {
@@ -503,7 +570,7 @@ form button {
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 0 0 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2), 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 form button:hover {
@@ -520,6 +587,9 @@ form button:hover {
     color: var(--primary-color);
     text-decoration: none;
     transition: color 0.3s;
+}
+.fa-3x { /*insta icon*/
+    color: var(--primary-color);
 }
 
 .redes-sociais a:hover {
@@ -547,7 +617,7 @@ footer {
     border-radius: 50px;
     text-align: center;
     font-size: 30px;
-    box-shadow: 1px 1px 2px #888;
+    box-shadow: 1px 3px 2px #888;
     z-index: 1000;
     transition: transform 0.3s ease;
 }
@@ -601,27 +671,46 @@ footer {
     }
 
     header {
-        padding: 0;
+        padding: 9px;
     }
 }
 
 @media screen and (max-width: 768px) {
-    /*exibir menu icon*/
+    header {
+        position: relative; /* Add this to contain the absolute positioned menu */
+        padding: 0;
+    }
+
     .menu-icon {
         display: block;
-        text-align: right;
-        padding: 10px;
         text-align: left;
+        padding: 10px;
+        position: relative;
+        z-index: 1001; /* Ensure icon stays above menu */
     }
 
     /*ocultar menu padrão*/
     .nav-links {
-        display: none;
+        opacity: 0;
+        visibility: hidden;
+        max-height: 0;
+        transition: all 0.3s ease-in-out;
+        overflow: hidden;
+        background: linear-gradient(to bottom, rgb(112, 155, 147), rgb(123, 184, 173));
+        position: absolute;
+        width: 100%;
+        left: 0;
+        top: 100%; /* Position right below header */
+        z-index: 1000;
     }
 
     /*exibir menu icon*/
     .nav-links.active {
-        display: block;
+        opacity: 1;
+        visibility: visible;
+        max-height: 300px; /* Fixed height instead of using scrollHeight */
+        padding: 1rem 0;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     }
 
     /*menus em colum no mobile*/
@@ -679,6 +768,7 @@ footer {
         height: 150px;
         background-attachment: scroll;
         opacity: 1;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     }
 
     .price-table .container-price {
@@ -697,6 +787,23 @@ footer {
         margin-right: 20px;
         font-size: 30px;
     }
+    
+    .nav-links {
+        display: block;
+        width: 100%;
+        background-color: var(--background-color);
+        position: absolute; /* Position absolutely to prevent affecting layout */
+        top: 60px; /* Adjust based on header height */
+        left: 0;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        margin-top: 113px;
+    }
+    
+    nav ul {
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+    }
 }
 
 @media screen and (max-width: 480px) {
@@ -711,11 +818,6 @@ footer {
     .texto-banner h1 {
         font-size: 1.5rem;
     }
-
-    .price-table .card {
-        width: 100%;
-    }
-
     form input,
     form textarea {
         flex: 1 1 100%;
@@ -727,5 +829,25 @@ footer {
         bottom: 20px;
         right: 20px;
         font-size: 25px;
+        text-align: center;
+    }
+}
+
+/* Reset .nav-links styles for desktop to prevent overflow */
+@media screen and (min-width: 769px) {
+    .nav-links {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        max-height: none !important;
+        opacity: 1;
+        visibility: visible;
+        transition: none;
+    }
+
+    nav ul {
+        flex-direction: row;
+        justify-content: center;
+        width: 100%;
     }
 }

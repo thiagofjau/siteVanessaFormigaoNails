@@ -63,7 +63,7 @@ const reviews = document.querySelectorAll('.avaliacao');
 let currentIndex = 0;
 let autoSlideInterval;
 
-const updateReviews = (index, direction = 'left') => {
+const updateReviews = (index, direction = 'right') => {
     reviews.forEach((review) => {
         review.style.display = 'none';
         review.classList.remove('slide-in-left', 'slide-in-right');
@@ -75,21 +75,18 @@ const updateReviews = (index, direction = 'left') => {
     reviews[index].style.display = 'block';
     reviews[index].classList.add(direction === 'left' ? 'slide-in-left' : 'slide-in-right');
 
-    //opacidade ao alternar entre os slides. ok (mas testar slide vindo)
-    reviews[index].style.opacity = '0';
-    setTimeout(() => {
-        reviews[index].style.transition = 'opacity 0.5s ease-in-out';
-        reviews[index].style.opacity = '1';
-    }, 400);
-
-
-
+    // Remove opacity transitions
+    // reviews[index].style.opacity = '0';
+    // setTimeout(() => {
+    //     reviews[index].style.transition = 'opacity 0.5s ease-in-out';
+    //     reviews[index].style.opacity = '1';
+    // }, 400);
 };
 
 const startAutoSlide = () => {
     autoSlideInterval = setInterval(() => {
         currentIndex = (currentIndex < reviews.length - 1) ? currentIndex + 1 : 0;
-        updateReviews(currentIndex, 'left');
+        updateReviews(currentIndex, 'right');
     }, 4000); // Change slide every 3 seconds
 };
 
@@ -100,14 +97,14 @@ const stopAutoSlide = () => {
 prevButton.addEventListener('click', () => {
     stopAutoSlide();
     currentIndex = (currentIndex > 0) ? currentIndex - 1 : reviews.length - 1;
-    updateReviews(currentIndex, 'right');
+    updateReviews(currentIndex, 'left');
     startAutoSlide();
 });
 
 nextButton.addEventListener('click', () => {
     stopAutoSlide();
     currentIndex = (currentIndex < reviews.length - 1) ? currentIndex + 1 : 0;
-    updateReviews(currentIndex, 'left');
+    updateReviews(currentIndex, 'right');
     startAutoSlide();
 });
 
@@ -116,7 +113,7 @@ bullets.forEach((bullet, index) => {
     bullet.addEventListener('click', () => {
         stopAutoSlide();
         currentIndex = index;
-        updateReviews(currentIndex, 'left');
+        updateReviews(currentIndex, 'right');
         startAutoSlide();
     });
 });
@@ -126,19 +123,19 @@ document.addEventListener('keydown', (e) => {
     if (e.key === 'ArrowLeft') {
         stopAutoSlide();
         currentIndex = (currentIndex > 0) ? currentIndex - 1 : reviews.length - 1;
-        updateReviews(currentIndex, 'right');
+        updateReviews(currentIndex, 'left');
         startAutoSlide();
     } else if (e.key === 'ArrowRight') {
         stopAutoSlide();
         currentIndex = (currentIndex < reviews.length - 1) ? currentIndex + 1 : 0;
-        updateReviews(currentIndex, 'left');
+        updateReviews(currentIndex, 'right');
         startAutoSlide();
     }
 });
 
 // Initialize the first review and start auto slide
 document.addEventListener('DOMContentLoaded', () => {
-    updateReviews(currentIndex);
+    updateReviews(currentIndex, 'right');
     startAutoSlide();
 });
 
@@ -172,10 +169,14 @@ const navLinks = document.querySelector('.nav-links');
 
 menuIcon.addEventListener('click', () => {
     navLinks.classList.toggle('active');
-    menuIcon.querySelector('i').classList.toggle('fa-times');
-    menuIcon.querySelector('i').classList.toggle('fa-bars');
-    //estudar uma transição   
+    const icon = menuIcon.querySelector('i');
+    icon.classList.toggle('fa-bars');
+    icon.classList.toggle('fa-times');
+    
+    // Remove maxHeight manipulation - let CSS handle it
+    navLinks.style.maxHeight = navLinks.classList.contains('active') ? '300px' : '0';
 });
+
 // Add transition for menu icon
 const menuIconTransition = document.createElement('style');
 menuIconTransition.innerHTML = `
@@ -192,5 +193,12 @@ document.addEventListener('click', (e) => {
     if (!navLinks.contains(e.target) && !menuIcon.contains(e.target)) {
         navLinks.classList.remove('active');
         menuIcon.querySelector('i').classList.remove('fa-times');
+        menuIcon.querySelector('i').classList.add('fa-bars');
+        navLinks.style.maxHeight = '0';
     }
+});
+
+// Ensure smooth transition on first click
+document.addEventListener('DOMContentLoaded', () => {
+    navLinks.style.maxHeight = '0';
 });
